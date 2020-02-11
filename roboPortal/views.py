@@ -7,6 +7,8 @@ from django.conf import settings
 from .models import portalUser, UserLink, Token, Team
 subject_roboPortalVerification = 'Verify your Robo Portal Email Address. '
 message_verification = ' it  means a world to us '
+subject_robathon = 'Robo Portal Selection'
+message_robathon = ' Congrats.You have been selected for the hackathon.'
 email_from = settings.EMAIL_HOST_USER
 
 import random
@@ -139,8 +141,20 @@ def adminView(request):
         return render(request,'adminView.html',{'all_team':all_team})
     else:
         raise Http404("You are not authorized as you are not robotix club member")
-def profileView(request):
-    pass
+def profileView(request,user_id):
+    user = User.objects.get(id = user_id)
+    return render(request,'profile.html',{'profile_user':user})
+def select(request,team_id):
+    global subject_robathon,message_robathon
+    team = Team.objects.get(id = team_id)
+    team.selected = True
+    team.save()
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = []
+    for user in team.member.all():
+        recipient_list.append(user.email)
+    send_mail( subject_robathon, message_robathon, email_from, recipient_list ,fail_silently=False )
+    return HttpResponse("ok")
 """
 def create(request):
     team = Team(admin = request.user)

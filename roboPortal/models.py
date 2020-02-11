@@ -20,6 +20,7 @@ class Team(models.Model):
     admin = models.OneToOneField(User, related_name= "leader", on_delete = models.CASCADE)
     member= models.ManyToManyField(User, related_name= "member")
     token = models.CharField(max_length= 100,null= True, blank= True)
+    selected = models.BooleanField(default= False)
     def __str__(self):
         return "Team" + self.name 
 # Create your models here.

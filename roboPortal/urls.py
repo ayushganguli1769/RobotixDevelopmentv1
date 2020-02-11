@@ -25,6 +25,7 @@ urlpatterns = [
     path('createProfile/', views.createProfile, name="createProfile"),
     path('adminView/',views.adminView, name= "adminView"),
     path('profileView/<int:user_id>/',views.profileView, name= "profileView"),
+    path('select/<int:team_id>',views.select, name="select"),
     #path('create/',views.create, name= "create"),
     #path('email/',views.email,name="email"),
 ]
