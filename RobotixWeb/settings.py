@@ -22,9 +22,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'h5au0+ubk)_fy#y)xw(-kotofkgj^&ca9fb9ovkm=z1+8ez2zv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-ALLOWED_HOSTS = ['139.59.88.68']
-# ALLOWED_HOSTS = ['127.0.0.1']
+DEBUG = True
+#ALLOWED_HOSTS = ['139.59.88.68']
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'extras',
     'alumni',
     'import_export',
+    'roboPortal',
 ]
 
 MIDDLEWARE = [
@@ -146,3 +147,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'tuhina840@gmail.com'
+EMAIL_HOST_PASSWORD = 'ayushganguli'
